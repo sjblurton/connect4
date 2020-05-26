@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const playerColor = document.querySelector(".player-color");
   const squares = document.querySelectorAll(".grid div");
   const result = document.querySelector("#result");
   const displayCurrentPlayer = document.querySelector("#current-player");
+  // cheer from xtrsounder https://freesound.org/people/xtrsounder/sounds/202498/
+  const cheerSound = new Audio("./sounds/cheer.wav");
+  // click from lebaston100 https://freesound.org/people/lebaston100/sounds/192273/
+  const clickSound = new Audio("./sounds/click.wav");
   let currentPlayer = 1;
 
   for (let i = 0, len = squares.length; i < len; i++) {
@@ -9,25 +14,40 @@ document.addEventListener("DOMContentLoaded", () => {
       // add an onclick to each square in your grid
       squares[i].onclick = function () {
         // if the square below your current square is taken, you can go ontop of it
-        if (squares[index + 7].classList.contains("taken")) {
-          if (currentPlayer === 1) {
-            // adds taken so can be played on top of in futer turn
-            squares[index].classList.add("taken");
-            // adds class player-one to add player color
-            squares[index].classList.add("player-one");
-            // change the player to player 2
-            currentPlayer = 2;
-            // prints on screen
-            displayCurrentPlayer.innerHTML = currentPlayer;
-          } else if (currentPlayer === 2) {
-            squares[index].classList.add("taken");
-            // adds class player-two to add player color
-            squares[index].classList.add("player-two");
-            // change the player to player 1
-            currentPlayer = 1;
-            // prints on screen
-            displayCurrentPlayer.innerHTML = currentPlayer;
-          }
+        if (
+          squares[index + 7].classList.contains("taken") &&
+          !squares[index].classList.contains("taken")
+        ) {
+          if (
+            !result.classList.contains("current-player-two") &&
+            !result.classList.contains("current-player-one")
+          ) {
+            clickSound.play();
+
+            if (currentPlayer === 1) {
+              // adds taken so can be played on top of in futer turn
+              squares[index].classList.add("taken");
+              // adds class player-one to add player color
+              squares[index].classList.add("player-one");
+              // change the player to player 2
+              playerColor.classList.remove("current-player-one");
+              playerColor.classList.add("current-player-two");
+              currentPlayer = 2;
+              // prints on screen
+              displayCurrentPlayer.innerHTML = currentPlayer;
+            } else if (currentPlayer === 2) {
+              squares[index].classList.add("taken");
+              // adds class player-two to add player color
+              squares[index].classList.add("player-two");
+              // change the player to player 1
+              playerColor.classList.remove("current-player-two");
+              playerColor.classList.add("current-player-one");
+
+              currentPlayer = 1;
+              // prints on screen
+              displayCurrentPlayer.innerHTML = currentPlayer;
+            }
+          } else alert("game over, restart to play again.");
           // if the square below isn't taken, an alert saying carn't go there
         } else alert("can not go there");
       };
@@ -122,7 +142,9 @@ document.addEventListener("DOMContentLoaded", () => {
           square4.classList.contains("player-one")
         ) {
           // if true player-one wins
+          cheerSound.play();
           result.innerHTML = "Player One Wins!";
+          result.classList.add("current-player-one");
         }
         // repeat for player-two
         else if (
@@ -132,7 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
           square4.classList.contains("player-two")
         ) {
           // if true player-one wins
+          cheerSound.play();
           result.innerHTML = "Player Two Wins!";
+          result.classList.add("current-player-two");
         }
       }
     }
@@ -140,3 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
     squares.forEach((squares) => squares.addEventListener("click", checkBoard));
   }
 });
+function restartGame() {
+  location.reload();
+}

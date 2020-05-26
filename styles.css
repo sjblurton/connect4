@@ -1,28 +1,161 @@
-/* * {
+@import url("https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
+body {
+  font-family: "Chelsea Market", cursive;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(./img/background.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.btn {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: #9bc995;
+  border: 3px solid #6ba292;
+  transition: all 300ms ease;
+}
+.btn:hover {
+  background-color: #6ba292;
+  border: 3px solid #9bc995;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 1);
+}
+.btn:active {
+  background-color: #35ce8d;
+  border: 3px solid #6ba292;
+}
+.center {
+  text-align: center;
+  text-decoration: underline;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10rem auto;
+  justify-items: center;
+  align-items: center;
+}
+.current-player-one {
+  color: #a50104;
+}
+.current-player-two {
+  color: #fcba04;
+}
+
+.title {
+  font-size: 2rem;
+  align-self: end;
+  color: #eaeaea;
+}
+.boardgame {
+  align-self: center;
+}
 .grid {
   border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  height: 120px;
-  width: 140px;
-}
-.grid div {
-  height: 20px;
-  width: 20px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  height: 23rem;
+  width: 34rem;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: end;
+  justify-items: center;
+  align-content: end;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+21,1e5799+21,2989d8+63 */
+  background: rgb(30, 87, 153); /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(30, 87, 153, 1) 21%,
+    rgba(30, 87, 153, 1) 21%,
+    rgba(41, 137, 216, 1) 63%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(30, 87, 153, 1) 21%,
+    rgba(30, 87, 153, 1) 21%,
+    rgba(41, 137, 216, 1) 63%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    rgba(30, 87, 153, 1) 21%,
+    rgba(30, 87, 153, 1) 21%,
+    rgba(41, 137, 216, 1) 63%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#2989d8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  border-radius: 20px;
+  padding-top: 1rem;
 }
 .player-one {
-  background-color: red;
-  border-radius: 10px;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a50104+20,a35152+90 */
+  background: rgb(165, 1, 4); /* Old browsers */
+  background: -moz-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(165, 1, 4, 1) 20%,
+    rgba(163, 81, 82, 1) 90%
+  ); /* FF3.6-15 */
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(165, 1, 4, 1) 20%,
+    rgba(163, 81, 82, 1) 90%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(165, 1, 4, 1) 20%,
+    rgba(163, 81, 82, 1) 90%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a50104', endColorstr='#a35152',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  border-radius: 50%;
 }
 
 .player-two {
-  background-color: blue;
-  border-radius: 10px;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcba04+20,f9d87c+91 */
+  background: rgb(252, 186, 4); /* Old browsers */
+  background: -moz-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(252, 186, 4, 1) 20%,
+    rgba(249, 216, 124, 1) 91%
+  ); /* FF3.6-15 */
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(252, 186, 4, 1) 20%,
+    rgba(249, 216, 124, 1) 91%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(252, 186, 4, 1) 20%,
+    rgba(249, 216, 124, 1) 91%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcba04', endColorstr='#f9d87c',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  border-radius: 50%;
+}
+
+.grid div {
+  height: 3.7rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: #ebebd3;
+  transition: all 300ms ease;
 }
 .base {
-  background-color: brown;
+  visibility: hidden;
 }
